@@ -15,7 +15,7 @@ def get_my_farm(game_data: object, username: str) -> Dict[str, Any]:
 def buy_field(my_farm: Dict[str, Any]) -> List[str]:
     if not my_farm["money"] > 10000:
         return []
-    for field in my_farm["field"]:
+    for field in my_farm["fields"]:
         if not field["bought"]:
             return ["0 ACHETER_CHAMP"]
     return []
