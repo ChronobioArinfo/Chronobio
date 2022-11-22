@@ -1,28 +1,9 @@
-[tool.poetry]
-name = "Chronobio player"
-version = "0.1"
-description = "Chronobio player is a IA for Chronobio game, create by Vincent Poulailleau"
-authors = [
-    "Matthias Martin <matthias2905@hotmail.fr>",
-    "Konan AKOUBIA <>"
-]
-license = "WTFPL"
-readme = "README.md"
-repository = "https://github.com/matt2905/Chronobio"
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.poetry.dependencies]
-python = ">=3.7,<4.0"
-
-[tool.poetry.group.dev.dependencies]
-black = "^22.8"
-flake8 = "^5.0"
-mypy = "^0.971"
-
-[tool.poetry.group.test.dependencies]
-coverage = "^6.4"
-pytest = "^7.1"
-pytest-cov = "^3.0"
-pytest-mock = "^3.8"
+[project]
+name = "player"
 
 [tool.black]
 exclude = '''/
@@ -67,6 +48,9 @@ warn_unused_configs = true
 minversion = "6.0.0rc1"
 # Always using Coverage.py disables debugging.
 # addopts = "--cov=pynguin --cov-branch --cov-report html:cov_html --cov-report=term-missing"
+pythonpath = [
+  "."
+]
 testpaths = [
     "tests",
 ]

@@ -13,11 +13,11 @@ On windows, in a terminal of VS code, run:
 In a terminal, run:
 
 ```console
-.venv\Scripts\python.exe -m player.player -a {host} -p {port}
+python.exe -m player.player -a {host} -p {port}
 ```
 
 ## Pytest:
 In a terminal, run:
 ```console
- .venv\Scripts\python.exe -m pytest
+ pytest
 ```
