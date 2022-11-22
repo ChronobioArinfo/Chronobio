@@ -1,8 +1,8 @@
 import argparse
 from typing import NoReturn
 
-from network.client import Client
-from player_logic.next_actions import get_next_actions
+from .network.client import Client
+from .player_logic.next_actions import get_next_actions
 
 
 class PlayerGameClient(Client):
@@ -15,15 +15,8 @@ class PlayerGameClient(Client):
     def run(self: "PlayerGameClient") -> NoReturn:
         while True:
             game_data = self.read_json()
-            for farm in game_data["farms"]:
-                if farm["name"] == self.username:
-                    my_farm = farm
-                    break
-            else:
-                raise ValueError(f"My farm is not found ({self.username})")
-            print(my_farm)
 
-            commands = get_next_actions(game_data["day", my_farm])
+            commands = get_next_actions(game_data, self.username)
             for command in commands:
                 self.add_command(command)
 

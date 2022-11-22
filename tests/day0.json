@@ -1,0 +1,405 @@
+{
+    "day": 0,
+    "farms": [
+        {
+            "blocked": false,
+            "name": "Roger",
+            "money": 100030,
+            "fields": [
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD1"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD2"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD3"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD4"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD5"
+                }
+            ],
+            "tractors": [],
+            "loans": [],
+            "soup_factory": {
+                "days_off": 0,
+                "stock": {
+                    "POTATO": 0,
+                    "LEEK": 0,
+                    "TOMATO": 0,
+                    "ONION": 0,
+                    "ZUCCHINI": 0
+                }
+            },
+            "employees": []
+        },
+        {
+            "blocked": false,
+            "name": "Gontran",
+            "money": 100030,
+            "fields": [
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD1"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD2"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD3"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD4"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD5"
+                }
+            ],
+            "tractors": [],
+            "loans": [],
+            "soup_factory": {
+                "days_off": 0,
+                "stock": {
+                    "POTATO": 0,
+                    "LEEK": 0,
+                    "TOMATO": 0,
+                    "ONION": 0,
+                    "ZUCCHINI": 0
+                }
+            },
+            "employees": []
+        },
+        {
+            "blocked": false,
+            "name": "Bertrand",
+            "money": 100030,
+            "fields": [
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD1"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD2"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD3"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD4"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD5"
+                }
+            ],
+            "tractors": [],
+            "loans": [],
+            "soup_factory": {
+                "days_off": 0,
+                "stock": {
+                    "POTATO": 0,
+                    "LEEK": 0,
+                    "TOMATO": 0,
+                    "ONION": 0,
+                    "ZUCCHINI": 0
+                }
+            },
+            "employees": []
+        },
+        {
+            "blocked": false,
+            "name": "Jean",
+            "money": 100030,
+            "fields": [
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD1"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD2"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD3"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD4"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD5"
+                }
+            ],
+            "tractors": [],
+            "loans": [],
+            "soup_factory": {
+                "days_off": 0,
+                "stock": {
+                    "POTATO": 0,
+                    "LEEK": 0,
+                    "TOMATO": 0,
+                    "ONION": 0,
+                    "ZUCCHINI": 0
+                }
+            },
+            "employees": []
+        },
+        {
+            "blocked": false,
+            "name": "Bernard",
+            "money": 100030,
+            "fields": [
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD1"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD2"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD3"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD4"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD5"
+                }
+            ],
+            "tractors": [],
+            "loans": [],
+            "soup_factory": {
+                "days_off": 0,
+                "stock": {
+                    "POTATO": 0,
+                    "LEEK": 0,
+                    "TOMATO": 0,
+                    "ONION": 0,
+                    "ZUCCHINI": 0
+                }
+            },
+            "employees": []
+        },
+        {
+            "blocked": false,
+            "name": "Philbert",
+            "money": 100030,
+            "fields": [
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD1"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD2"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD3"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD4"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD5"
+                }
+            ],
+            "tractors": [],
+            "loans": [],
+            "soup_factory": {
+                "days_off": 0,
+                "stock": {
+                    "POTATO": 0,
+                    "LEEK": 0,
+                    "TOMATO": 0,
+                    "ONION": 0,
+                    "ZUCCHINI": 0
+                }
+            },
+            "employees": []
+        },
+        {
+            "blocked": false,
+            "name": "Pascal",
+            "money": 100030,
+            "fields": [
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD1"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD2"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD3"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD4"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD5"
+                }
+            ],
+            "tractors": [],
+            "loans": [],
+            "soup_factory": {
+                "days_off": 0,
+                "stock": {
+                    "POTATO": 0,
+                    "LEEK": 0,
+                    "TOMATO": 0,
+                    "ONION": 0,
+                    "ZUCCHINI": 0
+                }
+            },
+            "employees": []
+        },
+        {
+            "blocked": false,
+            "name": "Vincent",
+            "money": 100030,
+            "fields": [
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD1"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD2"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD3"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD4"
+                },
+                {
+                    "content": "NONE",
+                    "needed_water": 0,
+                    "bought": false,
+                    "location": "FIELD5"
+                }
+            ],
+            "tractors": [],
+            "loans": [],
+            "soup_factory": {
+                "days_off": 0,
+                "stock": {
+                    "POTATO": 0,
+                    "LEEK": 0,
+                    "TOMATO": 0,
+                    "ONION": 0,
+                    "ZUCCHINI": 0
+                }
+            },
+            "employees": []
+        }
+    ]
+}
