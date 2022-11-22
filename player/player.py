@@ -53,7 +53,7 @@ if __name__ == "__main__":
         "--username",
         type=str,
         help="name of the user",
-        default="unknown"
+        default="AgricultorSimulator"
     )
     args = parser.parse_args()
 

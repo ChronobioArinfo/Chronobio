@@ -21,5 +21,3 @@ In a terminal, run:
 ```console
  pytest
 ```
-
-test
