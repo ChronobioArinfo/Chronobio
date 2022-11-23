@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from random import randint
+from typing import Any, Dict
 from .my_type import Location, Vegetable
 
 
@@ -30,10 +31,6 @@ class Field:
     def content(self, vegetable: Vegetable) -> None:
         self._content = vegetable
 
-    @property
-    def water_needed(self) -> int:
-        return self._water_needed
-
     def planting(self, vegetable: Vegetable = Vegetable.NONE) -> None:
         """planted the same previous type of vegetable or the new one given
 
@@ -51,3 +48,16 @@ class Field:
 
     def gathering(self) -> None:
         self._content = Vegetable.NONE
+
+    def read_data(self, data: Dict[str, Any]) -> None:
+        vegetables: Dict[str, Vegetable] = {
+            "NONE": Vegetable.NONE,
+            "POTATO": Vegetable.PATATE,
+            "LEEK": Vegetable.POIREAU,
+            "TOMATO": Vegetable.TOMATE,
+            "ONION": Vegetable.OIGNON,
+            "ZUCCHINI": Vegetable.COURGETTE,
+        }
+        my_vegetable = data["content"]
+        self.content = vegetables[my_vegetable]
+        self._water_needed = data["needed_water"]

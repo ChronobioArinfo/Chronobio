@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List
+from typing import Any, Dict, List
 from .farm import Farm
 
 
@@ -14,7 +14,7 @@ class State():
         self._username = username
         self._my_farm = Farm()
 
-    def read_data(self, data: object) -> None:
+    def read_data(self, data: Dict[str, Any]) -> None:
         self._day = data["day"]
         for farm in data["farms"]:
             if farm["name"] == self._username:

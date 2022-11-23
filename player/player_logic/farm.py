@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 from .employee import Employee
 from .field import Field
 from .my_type import Location, Vegetable
@@ -46,12 +46,19 @@ class Farm:
 
     def get_farm_work_needed(self) -> Optional[Field]:
         for field in self._fields:
-            if field.content == Vegetable.NONE or field.water_needed > 0:
+            if field.content == Vegetable.NONE or field._water_needed > 0:
                 return field
 
-    def read_data(self, data: object) -> None:
+    def get_field_by_location(self, location: Location) ->Optional[Field]:
+        for field in self._fields:
+            if field.location == location:
+                return field
+
+    def read_data(self, data: Dict[str, Any]) -> None:
         for field in data["fields"]:
-            if field["bought"]:
-                ...
+            location: Location = getattr(Location, field["location"])
+            my_field: Optional[Field] = self.get_field_by_location(location)
+            if my_field is not None:
+                my_field.read_data(field)
         for employee in data["employees"]:
             self.get_employee_by_id(employee["id"]).read_data(employee)

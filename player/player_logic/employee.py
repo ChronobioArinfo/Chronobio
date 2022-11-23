@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Any, Dict
 
 from .my_type import Location, Vegetable
 from .field import Field
@@ -44,5 +45,6 @@ class Employee:
         field.watering()
         return f"{self._id} ARROSER {field.location.value}"
 
-    def read_data(self, data: object) -> None:
-        ...
+    def read_data(self, data: Dict[str, Any]) -> None:
+        self.location = getattr(Location, data["location"])
+        self._salary = data["salary"]
