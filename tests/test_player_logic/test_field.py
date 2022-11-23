@@ -22,7 +22,8 @@ def test_planting(vegetable, expected):
     "time, expected", [
         (1, 9),
         (5, 5),
-        (10, 0)
+        (10, 0),
+        (20, 0)
     ]
 )
 def test_watering(time, expected):
@@ -37,4 +38,4 @@ def test_gathering():
     field: Field = Field(Location.FIELD1)
     field.planting(Vegetable.PATATE)
     field.gathering()
-    assert field._content == Vegetable.NONE
+    assert field.content == Vegetable.NONE
