@@ -15,10 +15,23 @@ exclude = '''/
     CodeChat_Server\/templates\/runestone
 /'''
 
+[tool.flake8]
+extend-ignore = ['E203']
+exclude = [
+    '.git',
+    '.venv',
+    '__pycache__',
+    'docs/source/conf.py',
+    'old',
+    'build',
+    'dist'
+]
+max-complexity = 10
+
 [tool.coverage.run]
 branch = true
-source = ["pynguin", "tests"]
-omit = ["tests/fixtures/*"]
+source = ["player"]
+omit = ["player/network/*"]
 
 [tool.coverage.report]
 exclude_lines = [
@@ -47,7 +60,7 @@ warn_unused_configs = true
 [tool.pytest.ini_options]
 minversion = "6.0.0rc1"
 # Always using Coverage.py disables debugging.
-# addopts = "--cov=pynguin --cov-branch --cov-report html:cov_html --cov-report=term-missing"
+addopts = "--cov=player --cov-branch --cov-report html:cov_html --cov-report=term-missing"
 pythonpath = [
   "."
 ]
