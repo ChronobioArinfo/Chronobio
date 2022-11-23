@@ -44,7 +44,7 @@ def day_0(state: State) -> List[str]:
 
 
 def init_day(state: State) -> None:
-    for employee in state.my_farm.employees:
+    for employee in state.my_farm.employees.values():
         employee.busy_for -= 1
 
 

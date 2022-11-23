@@ -31,7 +31,6 @@ def test_day_0():
     ]
 )
 def test_init_day(busy_for, expected):
-    Employee.id_actual = 0
     state: State = State("test")
     employee: Optional[Employee]
 
@@ -44,7 +43,6 @@ def test_init_day(busy_for, expected):
 
 
 def test_give_job_employee():
-    Employee.id_actual = 0
     state: State = State("test")
     field: Optional[Field]
     state.my_farm.add_employee()
@@ -57,7 +55,6 @@ def test_give_job_employee():
 
 
 def test_give_job_employee_no_field():
-    Employee.id_actual = 0
     state: State = State("test")
     field: Optional[Field]
     state.my_farm.add_employee()

@@ -26,26 +26,27 @@ def test_add_field(number, expected):
     ]
 )
 def test_add_employee(number, id, expected):
-    Employee.id_actual = 0
     farm: Farm = Farm()
 
     for _ in range(number):
         farm.add_employee()
     assert farm.get_employee_by_id(id).id == expected
 
+def test_employee_index_arror():
+    farm: Farm = Farm()
+    with pytest.raises(IndexError):
+        farm.get_employee_by_id(2)
 
 def test_get_employee_busy():
-    Employee.id_actual = 0
-    field: Field = Field(Location.FIELD1)
+    field: Field = Field(Location.FIELD5)
     farm: Farm = Farm()
 
     farm.add_employee()
-    farm.get_employee_by_id(1).watering(field)
+    farm.get_employee_by_id(1).work(field)
     assert farm.get_employee_not_busy() is None
 
 
 def test_get_employee_not_busy():
-    Employee.id_actual = 0
     farm: Farm = Farm()
 
     farm.add_employee()
