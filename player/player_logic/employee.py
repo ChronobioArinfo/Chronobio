@@ -1,17 +1,19 @@
 from dataclasses import dataclass
-from typing import ClassVar
+from typing import ClassVar, List
 
 
 @dataclass
-class employee:
+class Employee:
     id_actual: ClassVar[int] = 0
+    employees: ClassVar[List["Employee"]] = []
     _id: int
     _busy_for: int = 0
     _tractor_id: int = 0
+    _salary: int = 1000
 
     def __init__(self) -> None:
-        self._id = employee.id_actual
-        employee.id_actual += 1
+        self._id = Employee.id_actual
+        Employee.id_actual += 1
 
     @property
     def id(self):

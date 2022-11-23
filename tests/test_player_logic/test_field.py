@@ -2,6 +2,7 @@ import pytest
 from player.player_logic.my_type import Location, Vegetable
 from player.player_logic.field import Field
 
+
 @pytest.mark.parametrize(
     "vegetable, expected", [
         (Vegetable.PATATE, (Vegetable.PATATE, 10)),

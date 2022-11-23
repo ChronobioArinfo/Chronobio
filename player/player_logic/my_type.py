@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class Vegetable(Enum):
     NONE = 0
     PATATE = 1
@@ -7,6 +8,7 @@ class Vegetable(Enum):
     TOMATE = 3
     OIGNON = 4
     COURGETTE = 5
+
 
 class Location(Enum):
     FARM = 0

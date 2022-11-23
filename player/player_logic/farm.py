@@ -18,6 +18,6 @@ class Farm:
         location: Location = Location(len(self._fields) + 1)
         self._fields.append(Field(location))
         print(self._fields)
-    
+
     def add_employee(self) -> None:
         self._employee.append(Employee())
