@@ -3,22 +3,25 @@ from typing import NoReturn
 
 from .network.client import Client
 from .player_logic.next_actions import get_next_actions
+from .player_logic.state import State
 
 
 class PlayerGameClient(Client):
+    _state: State
+
     def __init__(
         self: "PlayerGameClient", server_addr: str, port: int, username: str
     ) -> None:
         super().__init__(server_addr, port, username, spectator=False)
         self._commands: list[str] = []
+        self._state = State(username)
 
     def run(self: "PlayerGameClient") -> NoReturn:
         while True:
             game_data = self.read_json()
+            self._state.read_data(game_data)
 
-            commands = get_next_actions(game_data, self.username)
-            for command in commands:
-                self.add_command(command)
+            self._commands = get_next_actions(self._state)
 
             self.send_commands()
 
