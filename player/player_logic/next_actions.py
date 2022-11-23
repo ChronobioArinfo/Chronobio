@@ -63,6 +63,7 @@ def total_number_vegetable(game_data: object) -> Dict[str, int]:
 
 def get_next_actions(game_data: object, username: str) -> List[str]:
     my_farm: Dict[str, Any] = get_my_farm(game_data, username)
+    print(my_farm)
     commands: List[str] = []
     day: int = game_data["day"]
 
@@ -74,28 +75,18 @@ def get_next_actions(game_data: object, username: str) -> List[str]:
             "0 EMPLOYER",
             "0 EMPLOYER",
             "0 EMPLOYER",
-            "0 EMPLOYER",
-            "0 EMPLOYER",
-            "0 EMPLOYER",
-            "0 EMPLOYER",
-            "0 EMPLOYER"
+            "1 SEMER PATATE 1"
             ]
-    if (day % 2):
+    elif (day % 3):
         commands += [
             "1 ARROSER 1",
             "2 ARROSER 1",
             "3 ARROSER 1",
             "4 ARROSER 1",
-            "5 ARROSER 1",
-            "6 ARROSER 1",
-            "7 ARROSER 1",
-            "8 ARROSER 1",
-            "9 ARROSER 1",
-            "10 ARROSER 1",
-            "0 VENDRE 1"
+            "5 ARROSER 1"
         ]
     else:
-        commands += ["1 SEMER PATATE 1"]
+        commands += ["0 VENDRE 1", "1 SEMER PATATE 1"]
 
     if (day % 30 and day != 0):
         ...
