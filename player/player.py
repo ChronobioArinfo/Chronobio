@@ -1,5 +1,5 @@
 import argparse
-from typing import NoReturn
+from typing import List, NoReturn
 
 from .network.client import Client
 from .player_logic.next_actions import get_next_actions
@@ -13,7 +13,7 @@ class PlayerGameClient(Client):
         self: "PlayerGameClient", server_addr: str, port: int, username: str
     ) -> None:
         super().__init__(server_addr, port, username, spectator=False)
-        self._commands: list[str] = []
+        self._commands: List[str] = []
         self._state = State(username)
 
     def run(self: "PlayerGameClient") -> NoReturn:
