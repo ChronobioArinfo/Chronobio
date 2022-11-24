@@ -1,5 +1,7 @@
 from dataclasses import dataclass
-from typing import Any, Dict, Optional
+from typing import Optional
+
+from player.json_class.state_json import StateJSON
 from .farm import Farm
 
 
@@ -9,6 +11,11 @@ class State:
     _username: str
     _day: int = 0
     _is_busy: int = 0
+
+    def __init__(self, username: str) -> None:
+        self._username = username
+        self._my_farm = Farm()
+        self.data = StateJSON(day=0, farms=[])
 
     @property
     def is_busy(self) -> int:
@@ -20,10 +27,6 @@ class State:
         if self._is_busy < 0:
             self._is_busy = 0
 
-    def __init__(self, username: str) -> None:
-        self._username = username
-        self._my_farm = Farm()
-
     def sell(self) -> Optional[str]:
         field = self._my_farm.sellable_field()
         if field is not None and self._is_busy == 0:
@@ -31,8 +34,11 @@ class State:
             return f"0 VENDRE {field.location.value}"
         return None
 
-    def read_data(self, data: Dict[str, Any]) -> None:
-        self._day = data["day"]
-        for farm in data["farms"]:
-            if farm["name"] == self._username:
-                self._my_farm.read_data(farm)
+    def __setattr__(self, name: str, value: StateJSON) -> None:
+        if name == "data":
+            self._day = value.day
+            for farm in value.farms:
+                if farm.name == self._username:
+                    self._my_farm.data = farm
+        else:
+            super().__setattr__(name, value)
