@@ -19,6 +19,7 @@ def test_planting_long():
     employee.work(field)
     assert employee.busy_for == 5
 
+
 @pytest.mark.parametrize(
     "number, expected", [
         (2, 8),

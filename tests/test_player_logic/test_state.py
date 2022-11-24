@@ -29,7 +29,8 @@ def test_state_read_data(load_my_json):
 def test_field_read_data(load_my_json):
     state: State = load_my_json
     my_field = state.my_farm.get_field_by_location(Location.FIELD3)
-    assert my_field.content == Vegetable.PATATE
+    if my_field is not None:
+        assert my_field.content == Vegetable.PATATE
 
 
 def test_employee_read_data(load_my_json):

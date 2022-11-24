@@ -49,7 +49,7 @@ class Farm:
             if field.content == Vegetable.NONE or field._water_needed > 0:
                 return field
 
-    def get_field_by_location(self, location: Location) ->Optional[Field]:
+    def get_field_by_location(self, location: Location) -> Optional[Field]:
         for field in self._fields:
             if field.location == location:
                 return field

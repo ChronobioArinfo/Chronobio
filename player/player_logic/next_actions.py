@@ -1,5 +1,5 @@
 from typing import List, Optional
-from player.player_logic.my_type import Vegetable
+# from player.player_logic.my_type import Vegetable
 from .employee import Employee
 from .field import Field
 from .state import State
@@ -14,17 +14,6 @@ from .state import State
 #             if not field["content"] == "NONE":
 #                 total_vegetable[field["content"]] += 1
 #     return total_vegetable
-
-
-# # def get_staff_command(staff: Employee, my_farm: Dict[str, Any]) -> List[str]:
-# #     command: List[str] = []
-# #     vegetable = choice(["PATATE", "POIREAU", "TOMATE", "OIGNON", "COURGETTE"])
-# #     for field in my_farm["fields"]:
-# #         if field["bought"] and field["content"] == "NONE":
-# #             return [f"{Employee.id} SEMER {vegetable} {field['location']}"]
-# #         if field["bought"] and field["needed_water"]:
-# #             return [f"{Employee.id} AROSER {field['location']}"]
-# #     return command
 
 
 def day_0(state: State) -> List[str]:
