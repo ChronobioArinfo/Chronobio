@@ -26,7 +26,8 @@ class Farm:
             name="",
             score=0,
             soup_factory=SoupfactoryJSON(days_off=0, stock={}),
-            tractors=[]
+            tractors=[],
+            events=[]
         )
 
     @property

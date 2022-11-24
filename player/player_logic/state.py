@@ -15,7 +15,7 @@ class State:
     def __init__(self, username: str) -> None:
         self._username = username
         self._my_farm = Farm()
-        self.data = StateJSON(day=0, farms=[])
+        self.data = StateJSON(day=0, farms=[], events=[])
 
     @property
     def is_busy(self) -> int:
