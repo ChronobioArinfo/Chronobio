@@ -37,17 +37,6 @@ def test_init_day(busy_for, expected):
         assert employee.busy_for == expected
 
 
-def test_manager_sell():
-    state: State = State("test")
-
-    state._my_farm.add_field()
-    state._my_farm.add_field()
-    state._my_farm.fields[1].content = Vegetable.PATATE
-    state._my_farm.fields[1]._is_sellable = True
-    state.sell()
-    assert state._is_busy == 3
-
-
 @pytest.mark.parametrize("day, expected", [(1, 2), (2, 1), (3, 0)])
 def test_init_day_sell(day, expected):
     state: State = State("test")
