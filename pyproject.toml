@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "player"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.7"
 version = "1.0"
 dependencies = [
     "pydantic"
