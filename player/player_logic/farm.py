@@ -56,7 +56,7 @@ class Farm:
 
     def sellable_field(self) -> Optional[Field]:
         for field in self._fields:
-            if field.content != Vegetable.NONE and field._water_needed == 0:
+            if field.content != Vegetable.NONE and field._is_sellable:
                 return field
 
     def read_data(self, data: Dict[str, Any]) -> None:
