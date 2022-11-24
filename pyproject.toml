@@ -1,9 +1,25 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["setuptools >= 61"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "player"
+readme = "README.md"
+requires-python = ">=3.9"
+version = "1.0"
+
+[project.optional-dependencies]
+test = [
+    "mypy",
+    "pyproject-flake8==5.0.4",
+    "pytest",
+    "pytest-cov"
+]
+
+[tool.setuptools]
+py-modules = [
+    "player"
+]
 
 [tool.black]
 exclude = '''/
@@ -16,8 +32,8 @@ exclude = '''/
 /'''
 
 [tool.flake8]
-extend-ignore = ['E203']
 exclude = [
+    "README.md",
     '.git',
     '.venv',
     '__pycache__',
@@ -26,7 +42,9 @@ exclude = [
     'build',
     'dist'
 ]
-max-complexity = 10
+format = "colored"
+max_line_length = 88
+show_source = true
 
 [tool.coverage.run]
 branch = true
@@ -56,6 +74,18 @@ strict_optional = true
 warn_unused_ignores = true
 warn_redundant_casts = true
 warn_unused_configs = true
+files = ["player", "tests"]
+exclude = [
+    "README.md",
+    '.git',
+    '.venv',
+    '__pycache__',
+    'docs/source/conf.py',
+    'old',
+    'build',
+    'dist',
+    'player/network'
+]
 
 [tool.pytest.ini_options]
 minversion = "6.0.0rc1"

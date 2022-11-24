@@ -1,5 +1,6 @@
 import argparse
 from socket import AF_INET, SOCK_STREAM, socket
+from typing import Any, Dict
 
 from .data_handler import DataHandler
 
@@ -31,7 +32,7 @@ class Client:
     def send_json(self, data: object) -> None:
         self._data_handler.write_json(data)
 
-    def read_json(self) -> object:
+    def read_json(self) -> Dict[str, Any]:
         return self._data_handler.read_json()
 
 

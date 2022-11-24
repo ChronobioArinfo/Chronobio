@@ -29,6 +29,7 @@ class State:
         if field is not None and self._is_busy == 0:
             self._is_busy = 3
             return f"0 VENDRE {field.location.value}"
+        return None
 
     def read_data(self, data: Dict[str, Any]) -> None:
         self._day = data["day"]
