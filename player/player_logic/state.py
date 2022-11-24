@@ -34,5 +34,4 @@ class State:
         self._day = data["day"]
         for farm in data["farms"]:
             if farm["name"] == self._username:
-                print(farm)
                 self._my_farm.read_data(farm)
