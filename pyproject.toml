@@ -5,16 +5,22 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "player"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.7"
 version = "1.0"
+dependencies = [
+    "pydantic"
+]
 
 [project.optional-dependencies]
-test = [
+dev = [
     "mypy",
     "pyproject-flake8==5.0.4",
     "pytest",
     "pytest-cov"
 ]
+mypy = ["mypy"]
+flake8 = ["pyproject-flake8==5.0.4", "flake8"]
+pytest = ["pytest", "pytest-cov"]
 
 [tool.setuptools]
 py-modules = [

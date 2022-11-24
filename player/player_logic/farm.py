@@ -1,5 +1,8 @@
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional
+from typing import Dict, List, Optional
+
+from player.json_class.farm_json import FarmJSON
+from player.json_class.soupfactory_json import SoupfactoryJSON
 from .employee import Employee
 from .field import Field
 from .my_type import Location, Vegetable
@@ -14,6 +17,17 @@ class Farm:
     def __init__(self) -> None:
         self._fields = []
         self._employees = {}
+        self.data: FarmJSON = FarmJSON(
+            blocked=False,
+            employees=[],
+            fields=[],
+            loans=[],
+            money=100000,
+            name="",
+            score=0,
+            soup_factory=SoupfactoryJSON(days_off=0, stock={}),
+            tractors=[]
+        )
 
     @property
     def fields(self):
@@ -63,11 +77,14 @@ class Farm:
                 return field
         return None
 
-    def read_data(self, data: Dict[str, Any]) -> None:
-        for field in data["fields"]:
-            location: Location = getattr(Location, field["location"])
-            my_field: Optional[Field] = self.get_field_by_location(location)
-            if my_field is not None:
-                my_field.read_data(field)
-        for employee in data["employees"]:
-            self.get_employee_by_id(employee["id"]).read_data(employee)
+    def __setattr__(self, name: str, value: FarmJSON) -> None:
+        if name == "data":
+            for field in value.fields:
+                loc: Location = getattr(Location, field.location)
+                my_field: Optional[Field] = self.get_field_by_location(loc)
+                if my_field is not None:
+                    my_field.data = field
+            for employee in value.employees:
+                self.get_employee_by_id(employee.id).data = employee
+        else:
+            super().__setattr__(name, value)

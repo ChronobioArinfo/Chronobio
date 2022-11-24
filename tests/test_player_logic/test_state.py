@@ -1,6 +1,7 @@
 from json import load as json_load
 from pathlib import Path
 import pytest
+from player.json_class.state_json import StateJSON
 from player.player_logic.state import State
 from player.player_logic.my_type import Location, Vegetable
 
@@ -12,12 +13,13 @@ def load_my_json() -> State:
         data = json_load(file)
 
     state: State = State("Vincent")
+    stateJSON: StateJSON = StateJSON(**data)
     state._my_farm.add_field()
     state._my_farm.add_field()
     state._my_farm.add_field()
     state._my_farm.add_employee()
     state._my_farm.add_employee()
-    state.read_data(data)
+    state.data = stateJSON
     return state
 
 

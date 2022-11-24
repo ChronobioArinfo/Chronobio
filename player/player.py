@@ -4,10 +4,12 @@ from typing import List, NoReturn
 from .network.client import Client
 from .player_logic.next_actions import get_next_actions
 from .player_logic.state import State
+from player.json_class.state_json import StateJSON
 
 
 class PlayerGameClient(Client):
     _state: State
+    _state_json: StateJSON
 
     def __init__(
         self: "PlayerGameClient", server_addr: str, port: int, username: str
@@ -19,7 +21,8 @@ class PlayerGameClient(Client):
     def run(self: "PlayerGameClient") -> NoReturn:
         while True:
             game_data = self.read_json()
-            self._state.read_data(game_data)
+            self._state_json = StateJSON(**game_data)
+            self._state.data = self._state_json
 
             self._commands = get_next_actions(self._state)
 

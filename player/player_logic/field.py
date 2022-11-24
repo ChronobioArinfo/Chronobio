@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from random import randint
-from typing import Any, Dict
+from typing import Dict
+
+from player.json_class.field_json import FieldJSON
 from .my_type import Location, Vegetable
 
 
@@ -15,6 +17,12 @@ class Field:
     def __init__(self, location: Location) -> None:
         self.location = location
         self._vegetable_wanted = Vegetable(randint(1, 5))
+        self.data: FieldJSON = FieldJSON(
+            bought=True,
+            content="NONE",
+            location=location.name,
+            needed_water=0
+        )
 
     @property
     def vegetable_wanted(self) -> Vegetable:
@@ -50,19 +58,21 @@ class Field:
     def gathering(self) -> None:
         self._content = Vegetable.NONE
 
-    def read_data(self, data: Dict[str, Any]) -> None:
-        vegetables: Dict[str, Vegetable] = {
-            "NONE": Vegetable.NONE,
-            "POTATO": Vegetable.PATATE,
-            "LEEK": Vegetable.POIREAU,
-            "TOMATO": Vegetable.TOMATE,
-            "ONION": Vegetable.OIGNON,
-            "ZUCCHINI": Vegetable.COURGETTE,
-        }
-        my_vegetable = data["content"]
-        self.content = vegetables[my_vegetable]
-        self._water_needed = data["needed_water"]
-        if self.content is not Vegetable.NONE and self._water_needed == 0:
-            self._is_sellable = True
+    def __setattr__(self, name: str, value: FieldJSON) -> None:
+        if name == "data":
+            vegetables: Dict[str, Vegetable] = {
+                "NONE": Vegetable.NONE,
+                "POTATO": Vegetable.PATATE,
+                "LEEK": Vegetable.POIREAU,
+                "TOMATO": Vegetable.TOMATE,
+                "ONION": Vegetable.OIGNON,
+                "ZUCCHINI": Vegetable.COURGETTE,
+            }
+            self.content = vegetables[value.content]
+            self._water_needed = value.needed_water
+            if self.content is not Vegetable.NONE and self._water_needed == 0:
+                self._is_sellable = True
+            else:
+                self._is_sellable = False
         else:
-            self._is_sellable = False
+            super().__setattr__(name, value)

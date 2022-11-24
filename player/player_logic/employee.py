@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from typing import Any, Dict
 
+from player.json_class.employee_json import EmployeeJSON
 from .my_type import Location, Vegetable
 from .field import Field
 
@@ -14,6 +14,12 @@ class Employee:
 
     def __init__(self, id: int) -> None:
         self._id = id
+        self.data = EmployeeJSON(
+            id=id,
+            location="FARM",
+            salary=1000,
+            tractor=None
+        )
 
     @property
     def id(self):
@@ -45,6 +51,9 @@ class Employee:
         field.watering()
         return f"{self._id} ARROSER {field.location.value}"
 
-    def read_data(self, data: Dict[str, Any]) -> None:
-        self.location = getattr(Location, data["location"])
-        self._salary = data["salary"]
+    def __setattr__(self, name: str, value: EmployeeJSON) -> None:
+        if name == "data":
+            self.location = getattr(Location, value.location)
+            self._salary = value.salary
+        else:
+            super().__setattr__(name, value)
