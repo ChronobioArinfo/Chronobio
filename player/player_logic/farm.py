@@ -54,6 +54,11 @@ class Farm:
             if field.location == location:
                 return field
 
+    def sellable_field(self) -> Optional[Field]:
+        for field in self._fields:
+            if field.content != Vegetable.NONE and field._water_needed == 0:
+                return field
+
     def read_data(self, data: Dict[str, Any]) -> None:
         for field in data["fields"]:
             location: Location = getattr(Location, field["location"])
