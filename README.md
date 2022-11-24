@@ -3,10 +3,18 @@
 ## Installation:
 On windows, in a terminal of VS code, run:
 
+### User:
 ```console
  python3 -m venv .venv
  .venv\Scripts\python.exe -m pip install --upgrade pip
- .venv\Scripts\python.exe -m pip install pytest
+ .venv\Scripts\python.exe -m pip install .
+```
+
+### Devs:
+```console
+ python3 -m venv .venv
+ .venv\Scripts\python.exe -m pip install --upgrade pip
+ .venv\Scripts\python.exe -m pip install .[test]
 ```
 
 ## Execution
