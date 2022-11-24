@@ -1,21 +1,19 @@
 from dataclasses import dataclass
-from typing import ClassVar
+from typing import Any, Dict
 
-from player.player_logic.my_type import Vegetable
-
+from .my_type import Location, Vegetable
 from .field import Field
 
 
 @dataclass
 class Employee:
-    id_actual: ClassVar[int] = 0
     _id: int
+    location: Location = Location.FARM
     _busy_for: int = 0
     _salary: int = 1000
 
-    def __init__(self) -> None:
-        Employee.id_actual += 1
-        self._id = Employee.id_actual
+    def __init__(self, id: int) -> None:
+        self._id = id
 
     @property
     def id(self):
@@ -32,20 +30,21 @@ class Employee:
             self._busy_for = 0
 
     def work(self, field: Field) -> str:
+        distance: int = abs(field.location.value - self.location.value)
+        self.busy_for = max(distance, 1)
         if field.content == Vegetable.NONE:
             return self.planting(field)
         else:
             return self.watering(field)
 
     def planting(self, field: Field) -> str:
-        self.busy_for = 1
         field.planting()
-        return f"{self._id} SEMER {field.content.name} {field.location}"
+        return f"{self._id} SEMER {field.content.name} {field.location.value}"
 
     def watering(self, field: Field) -> str:
-        self.busy_for = 1
         field.watering()
-        return f"{self._id} ARROSER {field.location}"
+        return f"{self._id} ARROSER {field.location.value}"
 
-    def read_data(self, data: object) -> None:
-        ...
+    def read_data(self, data: Dict[str, Any]) -> None:
+        self.location = getattr(Location, data["location"])
+        self._salary = data["salary"]

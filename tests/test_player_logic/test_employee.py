@@ -6,10 +6,18 @@ from player.player_logic.my_type import Location
 
 def test_planting():
     field: Field = Field(Location.FIELD1)
-    employee: Employee = Employee()
+    employee: Employee = Employee(1)
 
     employee.work(field)
-    assert (field.content, employee.busy_for) == (field.vegetable_wanted, 1)
+    assert field.content == field.vegetable_wanted
+
+
+def test_planting_long():
+    field: Field = Field(Location.FIELD5)
+    employee: Employee = Employee(1)
+
+    employee.work(field)
+    assert employee.busy_for == 5
 
 
 @pytest.mark.parametrize(
@@ -21,9 +29,9 @@ def test_planting():
 )
 def test_watering(number, expected):
     field: Field = Field(Location.FIELD1)
-    employee: Employee = Employee()
+    employee: Employee = Employee(1)
 
     employee.work(field)
     for _ in range(number):
         employee.work(field)
-    assert field.water_needed == expected
+    assert field._water_needed == expected
