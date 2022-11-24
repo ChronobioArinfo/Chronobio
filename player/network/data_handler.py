@@ -1,16 +1,23 @@
+from dataclasses import dataclass
 import json
 from socket import socket
 from threading import Lock, Thread
 from time import sleep
+from typing import Any, Dict
 
 
+@dataclass
 class DataHandler:
     BUFSIZ = 1024
+    _inputbytes: bytes
+    _input: str
+    _input_lock: Lock
+    _socket: socket
 
     def _receive_data(self) -> None:
         while True:
             try:
-                data = self.socket.recv(self.BUFSIZ)
+                data: bytes = self.socket.recv(self.BUFSIZ)
             except (BrokenPipeError, OSError):
                 return
             with self._input_lock:
@@ -39,7 +46,7 @@ class DataHandler:
             self._input = self._input[index + 1:]
             return line
 
-    def read_json(self) -> object:
+    def read_json(self) -> Dict[str, Any]:
         json_text = ""
         while True:
             json_text += "\n" + self.readline()

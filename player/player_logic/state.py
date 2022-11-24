@@ -29,10 +29,10 @@ class State:
         if field is not None and self._is_busy == 0:
             self._is_busy = 3
             return f"0 VENDRE {field.location.value}"
+        return None
 
     def read_data(self, data: Dict[str, Any]) -> None:
         self._day = data["day"]
         for farm in data["farms"]:
             if farm["name"] == self._username:
-                print(farm)
                 self._my_farm.read_data(farm)

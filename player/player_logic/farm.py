@@ -43,21 +43,25 @@ class Farm:
         for employee in self._employees.values():
             if employee._busy_for == 0:
                 return employee
+        return None
 
     def get_farm_work_needed(self) -> Optional[Field]:
         for field in self._fields:
             if field.content == Vegetable.NONE or field._water_needed > 0:
                 return field
+        return None
 
     def get_field_by_location(self, location: Location) -> Optional[Field]:
         for field in self._fields:
             if field.location == location:
                 return field
+        return None
 
     def sellable_field(self) -> Optional[Field]:
         for field in self._fields:
             if field.content != Vegetable.NONE and field._is_sellable:
                 return field
+        return None
 
     def read_data(self, data: Dict[str, Any]) -> None:
         for field in data["fields"]:
