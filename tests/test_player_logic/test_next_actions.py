@@ -34,8 +34,8 @@ def test_init_day(busy_for, expected):
     state: State = State("test")
     employee: Optional[Employee]
 
-    state.my_farm.add_employee()
-    employee = state.my_farm.get_employee_not_busy()
+    state._my_farm.add_employee()
+    employee = state._my_farm.get_employee_not_busy()
     if employee:
         employee.busy_for = busy_for
         init_day(state)
@@ -45,9 +45,9 @@ def test_init_day(busy_for, expected):
 def test_give_job_employee():
     state: State = State("test")
     field: Optional[Field]
-    state.my_farm.add_employee()
-    state.my_farm.add_field()
-    field = state.my_farm.get_farm_work_needed()
+    state._my_farm.add_employee()
+    state._my_farm.add_field()
+    field = state._my_farm.get_farm_work_needed()
 
     commands = give_job_employee(state)
     if field is not None:
@@ -57,8 +57,8 @@ def test_give_job_employee():
 def test_give_job_employee_no_field():
     state: State = State("test")
     field: Optional[Field]
-    state.my_farm.add_employee()
-    field = state.my_farm.get_farm_work_needed()
+    state._my_farm.add_employee()
+    field = state._my_farm.get_farm_work_needed()
 
     commands = give_job_employee(state)
     if field is None:
