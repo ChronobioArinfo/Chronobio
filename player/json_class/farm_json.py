@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List
+from typing import Any, List
 from .employee_json import EmployeeJSON
 from .field_json import FieldJSON
 from .loan_json import LoanJSON
@@ -17,3 +17,4 @@ class FarmJSON(BaseModel):
     score: int
     soup_factory: SoupfactoryJSON
     tractors: List[TractorJSON]
+    events: List[Any]
