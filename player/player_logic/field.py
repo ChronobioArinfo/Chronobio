@@ -10,6 +10,7 @@ class Field:
     _vegetable_wanted: Vegetable
     _content: Vegetable = Vegetable.NONE
     _water_needed: int = 0
+    _is_sellable: bool = False
 
     def __init__(self, location: Location) -> None:
         self.location = location
@@ -61,3 +62,7 @@ class Field:
         my_vegetable = data["content"]
         self.content = vegetables[my_vegetable]
         self._water_needed = data["needed_water"]
+        if self.content is not Vegetable.NONE and self._water_needed == 0:
+            self._is_sellable = True
+        else:
+            self._is_sellable = False
