@@ -38,14 +38,15 @@ def day_0(state: State) -> List[str]:
         state.my_farm.add_employee(),
         state.my_farm.add_employee(),
         state.my_farm.add_employee(),
-        state.my_farm.add_employee()
-        ]
+        state.my_farm.add_employee(),
+    ]
     return commands
 
 
 def init_day(state: State) -> None:
     for employee in state.my_farm.employees:
         employee.busy_for -= 1
+    state.is_busy -= 1
 
 
 def give_job_employee(state: State) -> List[str]:
@@ -68,8 +69,8 @@ def get_next_actions(state: State) -> List[str]:
     commands: List[str] = []
 
     init_day(state)
-    if (state._day == 0):
+    if state._day == 0:
         commands += day_0(state)
     commands += give_job_employee(state)
-
+    commands.append(state.sell())
     return commands

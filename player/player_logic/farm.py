@@ -47,6 +47,11 @@ class Farm:
             if field.content == Vegetable.NONE or field.water_needed > 0:
                 return field
 
+    def sellable_field(self) -> Optional[Field]:
+        for field in self._fields:
+            if field.content != Vegetable.NONE and field.water_needed == 0:
+                return field
+
     def read_data(self, data: object) -> None:
         for field in data["fields"]:
             if field["bought"]:
