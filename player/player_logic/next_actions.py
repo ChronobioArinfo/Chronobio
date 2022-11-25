@@ -28,6 +28,7 @@ def day_0(state: State) -> List[str]:
         state._my_farm.add_employee(),
         state._my_farm.add_employee(),
         state._my_farm.add_employee(),
+        state._my_farm.add_employee(),
     ]
     return commands
 
