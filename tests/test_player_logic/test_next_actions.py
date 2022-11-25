@@ -26,8 +26,7 @@ def test_day_0():
         "0 EMPLOYER",
         "0 EMPLOYER",
         "0 EMPLOYER",
-        "0 EMPLOYER",
-        "0 EMPLOYER",
+        "0 EMPLOYER"
     ]
 
 
@@ -96,7 +95,7 @@ def load_my_json() -> State:
 def test_next_actions_day0(load_my_json):
     state: State = load_my_json
     commands: List[str] = get_next_actions(state)
-    assert len(commands) == 17
+    assert len(commands) == 15
 
 
 def test_next_actions():
