@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional
+from typing import List, Optional
 from .employee import Employee
 from .field import Field
 from .state import State
@@ -15,8 +15,7 @@ def day_0(state: State) -> List[str]:
         state.my_farm.add_employee(),
         state.my_farm.add_employee(),
         state.my_farm.add_employee(),
-        state.my_farm.add_employee(),
-        state.my_farm.add_employee(),
+        state.my_farm.add_employee()
     ]
     return commands
 
