@@ -107,3 +107,22 @@ def test_next_actions():
     state.my_farm.fields[0].is_sellable = True
     commands: List[str] = get_next_actions(state)
     assert commands == ["0 VENDRE 1"]
+
+
+def test_next_actions_renew_employee():
+    state: State = State("AgricultorSimulator")
+    state.day = 1
+    state.my_farm.add_employee()
+    state.my_farm.employees[1]._salary = 1200
+    commands: List[str] = get_next_actions(state)
+    assert commands == ["0 LICENCIER 1", "0 EMPLOYER"]
+
+
+def test_next_actions_manager_busy():
+    state: State = State("AgricultorSimulator")
+    state.day = 1
+    state.my_farm.add_employee()
+    state.is_busy = 2
+    state.my_farm.employees[1]._salary = 1200
+    commands: List[str] = get_next_actions(state)
+    assert commands == []
