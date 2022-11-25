@@ -34,4 +34,4 @@ def test_watering(number, expected):
     employee.work(field)
     for _ in range(number):
         employee.work(field)
-    assert field._water_needed == expected
+    assert field.water_needed == expected

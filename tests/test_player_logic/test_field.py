@@ -15,7 +15,7 @@ def test_planting(vegetable, expected):
     if vegetable == Vegetable.NONE:
         field.vegetable_wanted = Vegetable.PATATE
     field.planting(vegetable)
-    assert (field.vegetable_wanted, field._water_needed) == expected
+    assert (field.vegetable_wanted, field.water_needed) == expected
 
 
 @pytest.mark.parametrize(
@@ -31,11 +31,4 @@ def test_watering(time, expected):
     field.planting(Vegetable.PATATE)
     for _ in range(time):
         field.watering()
-    assert field._water_needed == expected
-
-
-def test_gathering():
-    field: Field = Field(Location.FIELD1)
-    field.planting(Vegetable.PATATE)
-    field.gathering()
-    assert field.content == Vegetable.NONE
+    assert field.water_needed == expected

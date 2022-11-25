@@ -9,36 +9,20 @@ from .my_type import Location, Vegetable
 @dataclass
 class Field:
     location: Location
-    _vegetable_wanted: Vegetable
-    _content: Vegetable = Vegetable.NONE
-    _water_needed: int = 0
-    _is_sellable: bool = False
+    vegetable_wanted: Vegetable
+    content: Vegetable = Vegetable.NONE
+    water_needed: int = 0
+    is_sellable: bool = False
 
     def __init__(self, location: Location) -> None:
         self.location = location
-        self._vegetable_wanted = Vegetable(randint(1, 5))
+        self.vegetable_wanted = Vegetable(randint(1, 5))
         self.data: FieldJSON = FieldJSON(
             bought=True,
             content="NONE",
             location=location.name,
             needed_water=0
         )
-
-    @property
-    def vegetable_wanted(self) -> Vegetable:
-        return self._vegetable_wanted
-
-    @vegetable_wanted.setter
-    def vegetable_wanted(self, vegetable: Vegetable) -> None:
-        self._vegetable_wanted = vegetable
-
-    @property
-    def content(self) -> Vegetable:
-        return self._content
-
-    @content.setter
-    def content(self, vegetable: Vegetable) -> None:
-        self._content = vegetable
 
     def planting(self, vegetable: Vegetable = Vegetable.NONE) -> None:
         """planted the same previous type of vegetable or the new one given
@@ -49,14 +33,11 @@ class Field:
         if not vegetable == Vegetable.NONE:
             self.vegetable_wanted = vegetable
         self.content = self.vegetable_wanted
-        self._water_needed = 10
+        self.water_needed = 10
 
     def watering(self) -> None:
-        if self._water_needed > 0:
-            self._water_needed -= 1
-
-    def gathering(self) -> None:
-        self._content = Vegetable.NONE
+        if self.water_needed > 0:
+            self.water_needed -= 1
 
     def __setattr__(self, name: str, value: FieldJSON) -> None:
         if name == "data":
@@ -69,10 +50,10 @@ class Field:
                 "ZUCCHINI": Vegetable.COURGETTE,
             }
             self.content = vegetables[value.content]
-            self._water_needed = value.needed_water
-            if self.content is not Vegetable.NONE and self._water_needed == 0:
-                self._is_sellable = True
+            self.water_needed = value.needed_water
+            if self.content is not Vegetable.NONE and self.water_needed == 0:
+                self.is_sellable = True
             else:
-                self._is_sellable = False
+                self.is_sellable = False
         else:
             super().__setattr__(name, value)
