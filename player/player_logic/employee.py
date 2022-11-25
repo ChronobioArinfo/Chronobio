@@ -7,23 +7,19 @@ from .field import Field
 
 @dataclass
 class Employee:
-    _id: int
+    id: int
     location: Location = Location.FARM
     _busy_for: int = 0
     _salary: int = 1000
 
     def __init__(self, id: int) -> None:
-        self._id = id
+        self.id = id
         self.data = EmployeeJSON(
             id=id,
             location="FARM",
             salary=1000,
             tractor=None
         )
-
-    @property
-    def id(self):
-        return self._id
 
     @property
     def busy_for(self):
@@ -45,11 +41,11 @@ class Employee:
 
     def planting(self, field: Field) -> str:
         field.planting()
-        return f"{self._id} SEMER {field.content.name} {field.location.value}"
+        return f"{self.id} SEMER {field.content.name} {field.location.value}"
 
     def watering(self, field: Field) -> str:
         field.watering()
-        return f"{self._id} ARROSER {field.location.value}"
+        return f"{self.id} ARROSER {field.location.value}"
 
     def __setattr__(self, name: str, value: EmployeeJSON) -> None:
         if name == "data":

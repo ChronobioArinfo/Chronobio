@@ -10,13 +10,13 @@ from .my_type import Location, Vegetable
 
 @dataclass
 class Farm:
-    _fields: List[Field]
-    _employees: Dict[int, Employee]
+    fields: List[Field]
+    employees: Dict[int, Employee]
     _next_id_employee: int = 0
 
     def __init__(self) -> None:
-        self._fields = []
-        self._employees = {}
+        self.fields = []
+        self.employees = {}
         self.data: FarmJSON = FarmJSON(
             blocked=False,
             employees=[],
@@ -30,51 +30,43 @@ class Farm:
             events=[]
         )
 
-    @property
-    def fields(self):
-        return self._fields
-
-    @property
-    def employees(self):
-        return self._employees
-
     def add_field(self) -> str:
-        location: Location = Location(len(self._fields) + 1)
-        self._fields.append(Field(location))
+        location: Location = Location(len(self.fields) + 1)
+        self.fields.append(Field(location))
         return "0 ACHETER_CHAMP"
 
     def add_employee(self) -> str:
         self._next_id_employee += 1
         id = self._next_id_employee
-        self._employees[id] = Employee(id)
+        self.employees[id] = Employee(id)
         return "0 EMPLOYER"
 
     def get_employee_by_id(self, id: int) -> Employee:
-        if id in self._employees.keys():
-            return self._employees[id]
+        if id in self.employees.keys():
+            return self.employees[id]
         raise IndexError("employee not found")
 
     def get_employee_not_busy(self) -> Optional[Employee]:
-        for employee in self._employees.values():
-            if employee._busy_for == 0:
+        for employee in self.employees.values():
+            if employee.busy_for == 0:
                 return employee
         return None
 
     def get_farm_work_needed(self) -> Optional[Field]:
-        for field in self._fields:
-            if field.content == Vegetable.NONE or field._water_needed > 0:
+        for field in self.fields:
+            if field.content == Vegetable.NONE or field.water_needed > 0:
                 return field
         return None
 
     def get_field_by_location(self, location: Location) -> Optional[Field]:
-        for field in self._fields:
+        for field in self.fields:
             if field.location == location:
                 return field
         return None
 
     def sellable_field(self) -> Optional[Field]:
-        for field in self._fields:
-            if field.content != Vegetable.NONE and field._is_sellable:
+        for field in self.fields:
+            if field.content != Vegetable.NONE and field.is_sellable:
                 return field
         return None
 

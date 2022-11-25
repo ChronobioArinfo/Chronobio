@@ -36,8 +36,8 @@ def test_init_day(busy_for, expected):
     state: State = State("test")
     employee: Optional[Employee]
 
-    state._my_farm.add_employee()
-    employee = state._my_farm.get_employee_not_busy()
+    state.my_farm.add_employee()
+    employee = state.my_farm.get_employee_not_busy()
     if employee:
         employee.busy_for = busy_for
         init_day(state)
@@ -48,21 +48,21 @@ def test_init_day(busy_for, expected):
 def test_init_day_sell(day, expected):
     state: State = State("test")
 
-    state._my_farm.add_field()
-    state._my_farm.fields[0].content = Vegetable.PATATE
-    state._my_farm.fields[0]._is_sellable = True
+    state.my_farm.add_field()
+    state.my_farm.fields[0].content = Vegetable.PATATE
+    state.my_farm.fields[0].is_sellable = True
     state.sell()
     for _ in range(day):
         init_day(state)
-    assert state._is_busy == expected
+    assert state.is_busy == expected
 
 
 def test_give_job_employee():
     state: State = State("test")
     field: Optional[Field]
-    state._my_farm.add_employee()
-    state._my_farm.add_field()
-    field = state._my_farm.get_farm_work_needed()
+    state.my_farm.add_employee()
+    state.my_farm.add_field()
+    field = state.my_farm.get_farm_work_needed()
 
     commands = give_job_employee(state)
     if field is not None:
@@ -72,8 +72,8 @@ def test_give_job_employee():
 def test_give_job_employee_no_field():
     state: State = State("test")
     field: Optional[Field]
-    state._my_farm.add_employee()
-    field = state._my_farm.get_farm_work_needed()
+    state.my_farm.add_employee()
+    field = state.my_farm.get_farm_work_needed()
 
     commands = give_job_employee(state)
     if field is None:
@@ -101,9 +101,9 @@ def test_next_actions_day0(load_my_json):
 
 def test_next_actions():
     state: State = State("AgricultorSimulator")
-    state._day = 1
-    state._my_farm.add_field()
-    state._my_farm.fields[0].content = Vegetable.PATATE
-    state._my_farm.fields[0]._is_sellable = True
+    state.day = 1
+    state.my_farm.add_field()
+    state.my_farm.fields[0].content = Vegetable.PATATE
+    state.my_farm.fields[0].is_sellable = True
     commands: List[str] = get_next_actions(state)
     assert commands == ["0 VENDRE 1"]
