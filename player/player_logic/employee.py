@@ -31,10 +31,8 @@ class Employee:
         if self._busy_for < 0:
             self._busy_for = 0
 
-    def is_to_costly(self) -> bool:
-        if self._salary > 1100:
-            return True
-        return False
+    def is_too_costly(self) -> bool:
+        return self._salary > 1100
 
     def work(self, field: Field) -> str:
         distance: int = abs(field.location.value - self.location.value)
