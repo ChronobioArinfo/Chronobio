@@ -45,12 +45,10 @@ def give_job_employee(state: State) -> List[str]:
 
 def renew_employee(state: State) -> List[str]:
     commands: List[str] = []
-    employees_copy: Dict[int, Employee]
     if state.is_busy != 0:
         return commands
-    employees_copy = state.my_farm.employees.copy()
-    for employee in employees_copy.values():
-        if employee.is_to_costly():
+    for employee in list(state.my_farm.employees.values()):
+        if employee.is_too_costly():
             commands.append(state.my_farm.dismss_employee(employee))
             commands.append(state.my_farm.add_employee())
     commands += give_job_employee(state)
