@@ -1,19 +1,7 @@
-from typing import List, Optional
-# from player.player_logic.my_type import Vegetable
+from typing import Dict, List, Optional
 from .employee import Employee
 from .field import Field
 from .state import State
-
-
-# def total_number_vegetable(game_data: object) -> Dict[str, int]:
-#     total_vegetable: Dict[str, int] = {
-#         "POTATO": 0, "LEEK": 0, "TOMATO": 0, "ONION": 0, "ZUCCHINI": 0
-#         }
-#     for farm in game_data["farms"]:
-#         for field in farm["fields"]:
-#             if not field["content"] == "NONE":
-#                 total_vegetable[field["content"]] += 1
-#     return total_vegetable
 
 
 def day_0(state: State) -> List[str]:
@@ -55,6 +43,20 @@ def give_job_employee(state: State) -> List[str]:
     return commands
 
 
+def renew_employee(state: State) -> List[str]:
+    commands: List[str] = []
+    employees_copy: Dict[int, Employee]
+    if state.is_busy != 0:
+        return commands
+    employees_copy = state.my_farm.employees.copy()
+    for employee in employees_copy.values():
+        if employee.is_to_costly():
+            commands.append(state.my_farm.dismss_employee(employee))
+            commands.append(state.my_farm.add_employee())
+    commands += give_job_employee(state)
+    return commands
+
+
 def get_next_actions(state: State) -> List[str]:
     commands: List[str] = []
     can_sell: Optional[str]
@@ -63,6 +65,7 @@ def get_next_actions(state: State) -> List[str]:
     if state.day == 0:
         commands += day_0(state)
     commands += give_job_employee(state)
+    commands += renew_employee(state)
     can_sell = state.sell()
     if can_sell is not None:
         commands.append(can_sell)

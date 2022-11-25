@@ -41,6 +41,10 @@ class Farm:
         self.employees[id] = Employee(id)
         return "0 EMPLOYER"
 
+    def dismss_employee(self, employee: Employee) -> str:
+        self.employees.pop(employee.id)
+        return f"0 LICENCIER {employee.id}"
+
     def get_employee_by_id(self, id: int) -> Employee:
         if id in self.employees.keys():
             return self.employees[id]

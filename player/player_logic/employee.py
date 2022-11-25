@@ -22,14 +22,19 @@ class Employee:
         )
 
     @property
-    def busy_for(self):
+    def busy_for(self) -> int:
         return self._busy_for
 
     @busy_for.setter
-    def busy_for(self, days: int):
+    def busy_for(self, days: int) -> None:
         self._busy_for = days
         if self._busy_for < 0:
             self._busy_for = 0
+
+    def is_to_costly(self) -> bool:
+        if self._salary > 1100:
+            return True
+        return False
 
     def work(self, field: Field) -> str:
         distance: int = abs(field.location.value - self.location.value)
