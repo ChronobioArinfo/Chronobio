@@ -32,7 +32,7 @@ class Employee:
             self._busy_for = 0
 
     def is_too_costly(self) -> bool:
-        return self._salary > 1100
+        return self._salary > 1130
 
     def work(self, field: Field) -> str:
         distance: int = abs(field.location.value - self.location.value)
