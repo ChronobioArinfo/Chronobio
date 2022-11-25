@@ -39,3 +39,22 @@ def test_employee_read_data(load_my_json):
     state: State = load_my_json
     my_employee = state._my_farm.get_employee_by_id(1)
     assert my_employee.location == Location.FIELD3
+
+
+def test_can_sell():
+    state: State = State("test")
+
+    state._my_farm.add_field()
+    state._my_farm.add_field()
+    state._my_farm.fields[1].content = Vegetable.PATATE
+    state._my_farm.fields[1]._is_sellable = True
+    state.sell()
+    assert state._is_busy == 3
+
+
+def test_cannot_sell():
+    state: State = State("test")
+
+    state._my_farm.add_field()
+    state.sell()
+    assert state._is_busy == 0

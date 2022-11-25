@@ -1,10 +1,16 @@
+from json import load as json_load
 import pytest
-from typing import Optional
+from pathlib import Path
+from random import seed
+from typing import List, Optional
+
 from player.player_logic.employee import Employee
 from player.player_logic.field import Field
-from player.player_logic.next_actions import day_0, init_day, give_job_employee
-from player.player_logic.state import State
 from player.player_logic.my_type import Vegetable
+from player.player_logic.next_actions import day_0, init_day, \
+    give_job_employee, get_next_actions
+from player.player_logic.state import State
+from player.json_class.state_json import StateJSON
 
 
 def test_day_0():
@@ -16,6 +22,7 @@ def test_day_0():
         "0 ACHETER_CHAMP",
         "0 ACHETER_CHAMP",
         "0 ACHETER_CHAMP",
+        "0 EMPLOYER",
         "0 EMPLOYER",
         "0 EMPLOYER",
         "0 EMPLOYER",
@@ -35,17 +42,6 @@ def test_init_day(busy_for, expected):
         employee.busy_for = busy_for
         init_day(state)
         assert employee.busy_for == expected
-
-
-def test_manager_sell():
-    state: State = State("test")
-
-    state._my_farm.add_field()
-    state._my_farm.add_field()
-    state._my_farm.fields[1].content = Vegetable.PATATE
-    state._my_farm.fields[1]._is_sellable = True
-    state.sell()
-    assert state._is_busy == 3
 
 
 @pytest.mark.parametrize("day, expected", [(1, 2), (2, 1), (3, 0)])
@@ -82,3 +78,32 @@ def test_give_job_employee_no_field():
     commands = give_job_employee(state)
     if field is None:
         assert commands == []
+
+
+@pytest.fixture
+def load_my_json() -> State:
+    seed(0)
+    jsonfile = Path('./tests/day0.json')
+    with open(jsonfile) as file:
+        data = json_load(file)
+
+    state: State = State("AgricultorSimulator")
+    stateJSON: StateJSON = StateJSON(**data)
+    state.data = stateJSON
+    return state
+
+
+def test_next_actions_day0(load_my_json):
+    state: State = load_my_json
+    commands: List[str] = get_next_actions(state)
+    assert len(commands) == 17
+
+
+def test_next_actions():
+    state: State = State("AgricultorSimulator")
+    state._day = 1
+    state._my_farm.add_field()
+    state._my_farm.fields[0].content = Vegetable.PATATE
+    state._my_farm.fields[0]._is_sellable = True
+    commands: List[str] = get_next_actions(state)
+    assert commands == ["0 VENDRE 1"]

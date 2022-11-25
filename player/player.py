@@ -21,6 +21,7 @@ class PlayerGameClient(Client):
     def run(self: "PlayerGameClient") -> NoReturn:
         while True:
             game_data = self.read_json()
+            print(game_data)
             self._state_json = StateJSON(**game_data)
             self._state.data = self._state_json
 

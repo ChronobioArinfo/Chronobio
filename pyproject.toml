@@ -48,8 +48,7 @@ exclude = [
     'build',
     'dist'
 ]
-format = "colored"
-max_line_length = 88
+color = "always"
 show_source = true
 
 [tool.coverage.run]
